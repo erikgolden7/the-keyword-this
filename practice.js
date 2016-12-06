@@ -1,19 +1,25 @@
 //We're in a job interview. Answer the following questions (try to not look at your notes unless you have to).
   // 1) What is the purpose of the 'this keyword'?
 
-      //Answer
+      //The purpose of the 'this keyword' is to allow us to clean up and simplify methods and functions, and to allow us to borrow methods from other objects.
 
   // 2) What are the four rules that govern what the 'this keyword' is bound to and describe each?
 
-      //Answer
+      //Explicit:
+
+      //Implicit:
+
+      //new:
+
+      //Default/Window:
 
   // 3) What is the difference between call and apply?
 
-      //Answer
+      //call is used to borrow a method. apply is basically identical to call but it is used to pass an array as the argument.
 
   // 4) What does .bind do?
 
-      //Answer
+      //Bind will link an object to a specific var.
 
 
 //Next Problem
@@ -23,7 +29,13 @@
   //email --> which is a string
   //getUsername --> which is a function that returns the current object's username property. *Don't use 'user' instead use the 'this' keyword*
 
-    //Code Here
+    var user = {
+    username: "",
+    email: "",
+    getUsername: function(){
+      return this.username;
+    }
+  };
 
 //Now, invoke the getUsername method and verify you got the username of the object and not anything else.
 
@@ -33,7 +45,15 @@
 
 // Write the function definitions which will make the following function invocations function properly.
 
-  //Function Invocations Here
+  function Car(make, model, year) {
+    this.make = make;
+    this.model = model;
+    this.year = year;
+    this.move = 0;
+    this.moveCar = function(move) {
+      return move += 10;
+    }
+  };
 
 var prius = new Car('Toyota', 'Prius', 2011);
 var mustang = new Car('Ford', 'Mustang', 2013);
@@ -54,7 +74,8 @@ var getYear = function(){
 //Above you're given the getYear function. Using your prius and mustang objects from above, use the proper syntax that will allow for you to call the getYear function with the prius then the mustang objects being the focal objects. *Don't add getYear as a property on both objects*.
 
 //Note(no tests)
-  //Code Here
+  var priusYear = getYear.call(prius);
+  var priusYear = getYear.call(mustang);
 
 
 //New Problem
@@ -69,7 +90,8 @@ var getMyUsername = function() {
  return this.username;
 };
 
-var userName = getMyUsername(); //Fix this
+var userName = getMyUsername.call(myUser);
+getMyUsername();
 
 //Above you're given an object, and  a function. What will the getUsername function return?
 //Note(no tests)
